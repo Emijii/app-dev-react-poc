@@ -29,61 +29,59 @@ export default function Home() {
     const classes = useStyles();
     return (
         <div>
-            POC
-            <br />
             <Paper className={classes.paper}>
                 <Typography gutterBottom variant="subtitle1">
                     Mochi
                 </Typography>
-                <Grid item xs={12} xs container spacing={2}>
+                <Grid item xs={12} container spacing={2}>
                     <Grid item>
                         <ButtonBase className={classes.image}>
                             <img className={classes.img} alt="complex" src="https://images.dog.ceo/breeds/cairn/n02096177_1362.jpg" />
                         </ButtonBase>
                     </Grid>
-                    <Grid item xs container direction="column" spacing={2}>               
-                            <Grid container spacing={1}>
-                                <Grid container item xs={12} spacing={3}>
-                                    <Grid item xs={4}>
-                                        <Typography>TYPE</Typography>
-                                    </Grid>
-                                    <Grid item xs={8}>
-                                        <Typography>Australian Kelpie</Typography>
-                                    </Grid>
+                    <Grid item xs container direction="column" spacing={2}>
+                        <Grid container spacing={1}>
+                            <Grid container item xs={12} spacing={3}>
+                                <Grid item xs={4}>
+                                    <Typography>TYPE</Typography>
                                 </Grid>
-                                <Grid container item xs={12} spacing={3}>
-                                    <Grid item xs={4}>
-                                        <Typography>APPLICATION</Typography>
-                                    </Grid>
-                                    <Grid item xs={8}>
-                                        <Typography>Service</Typography>
-                                    </Grid>
+                                <Grid item xs={8}>
+                                    <Typography>Australian Kelpie</Typography>
                                 </Grid>
-                                <Grid container item xs={12} spacing={3}>
-                                    <Grid item xs={4}>
-                                        <Typography>LEGEND TITLE</Typography>
-                                    </Grid>
-                                    <Grid item xs={8}>
-                                        <Typography>Mochi is the best!</Typography>
-                                    </Grid>
+                            </Grid>
+                            <Grid container item xs={12} spacing={3}>
+                                <Grid item xs={4}>
+                                    <Typography>APPLICATION</Typography>
                                 </Grid>
-                                <Grid container item xs={12} spacing={3}>
-                                    <Grid item xs={4}>
-                                        <Typography>FILE NAME</Typography>
-                                    </Grid>
-                                    <Grid item xs={8}>
-                                        <Typography>Mochi.jpg</Typography>
-                                    </Grid>
+                                <Grid item xs={8}>
+                                    <Typography>Service</Typography>
                                 </Grid>
-                                <Grid container item xs={12} spacing={3}>
-                                    <Grid item xs={4}>
-                                        <Typography>IMAGE STATUS</Typography>
-                                    </Grid>
-                                    <Grid item xs={8}>
-                                        <Typography>Active</Typography>
-                                    </Grid>
+                            </Grid>
+                            <Grid container item xs={12} spacing={3}>
+                                <Grid item xs={4}>
+                                    <Typography>LEGEND TITLE</Typography>
                                 </Grid>
-                            </Grid>                      
+                                <Grid item xs={8}>
+                                    <Typography>Mochi is the best!</Typography>
+                                </Grid>
+                            </Grid>
+                            <Grid container item xs={12} spacing={3}>
+                                <Grid item xs={4}>
+                                    <Typography>FILE NAME</Typography>
+                                </Grid>
+                                <Grid item xs={8}>
+                                    <Typography>Mochi.jpg</Typography>
+                                </Grid>
+                            </Grid>
+                            <Grid container item xs={12} spacing={3}>
+                                <Grid item xs={4}>
+                                    <Typography>IMAGE STATUS</Typography>
+                                </Grid>
+                                <Grid item xs={8}>
+                                    <Typography>Active</Typography>
+                                </Grid>
+                            </Grid>
+                        </Grid>
                     </Grid>
                     <Grid item>
                         <Button>
