@@ -1,8 +1,11 @@
+import React from "react";
+import { Switch, Route, Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, InputBase, IconButton } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import PetsIcon from '@material-ui/icons/Pets';
 import Home from './components/Home';
+import Edit from './components/Edit';
 import './App.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -68,9 +71,9 @@ function App() {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit">
+          <Link to="/edit" edge="start" className={classes.menuButton} color="inherit">
             <PetsIcon />
-          </IconButton>
+          </Link>
           <Typography className={classes.title} variant="h6" noWrap>
             POC
           </Typography>
@@ -84,7 +87,10 @@ function App() {
         </Toolbar>
       </AppBar>
       <br />
-      <Home />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/edit" component={Edit} />
+      </Switch>
     </div>
   );
 }
