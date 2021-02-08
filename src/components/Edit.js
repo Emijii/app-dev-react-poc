@@ -9,15 +9,18 @@ export default function Edit() {
 
     //TODO: Remove hard coded data once we have API data.
     const name = "Mochi";
-    const type = "Australian Kelpie";
-    //const application = "Herding";
     const legendTitle = "Mochi is the best! This is a multiline text box.";
     const fileName = "Mochi.png";
     const imageStatus = "Active";
 
+    const [type, setType] = useState('1');
     const [application, setapplication] = useState('2');
 
-    const handleChange = (event) => {
+    const handleTypeChange = (event) => {
+        setType(event.target.value);
+    };
+
+    const handleApplicationChange = (event) => {
         setapplication(event.target.value);
     };
 
@@ -37,19 +40,28 @@ export default function Edit() {
                         <Grid container spacing={1}>
                             <Grid container item xs={12} spacing={3}>
                                 <Grid item xs={12}>
-                                    <TextField label="Name" variant="outlined" defaultValue={name || ''} />
+                                    <FormControl className={classes.formControl}>
+                                        <TextField className={classes.textField} label="Name" variant="outlined" defaultValue={name || ''} />
+                                    </FormControl>
                                 </Grid>
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
                                 <Grid item xs={12}>
-                                    <TextField label="Type" variant="outlined" defaultValue={type || ''} />
+                                    <FormControl className={classes.formControl} variant="outlined">
+                                        <InputLabel id="type-label">Type</InputLabel>
+                                        <Select id="type-select" labelId="type-label" className={classes.select} value={type} onChange={handleTypeChange} label="Type">
+                                            <MenuItem value={1}>Australian Kelpie</MenuItem>
+                                            <MenuItem value={2}>Border Collie</MenuItem>
+                                            <MenuItem value={3}>Pug</MenuItem>
+                                        </Select>
+                                    </FormControl>
                                 </Grid>
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
                                 <Grid item xs={12}>
-                                    <FormControl variant="outlined" className={classes.formControl}>
+                                    <FormControl className={classes.formControl} variant="outlined">
                                         <InputLabel id="application-label">Application</InputLabel>
-                                        <Select id="application-select" labelId="application-label" value={application} onChange={handleChange} label="Application">
+                                        <Select id="application-select" labelId="application-label" className={classes.select} value={application} onChange={handleApplicationChange} label="Application">
                                             <MenuItem value={1}>Detection</MenuItem>
                                             <MenuItem value={2}>Herding</MenuItem>
                                             <MenuItem value={3}>Service</MenuItem>
@@ -59,17 +71,23 @@ export default function Edit() {
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
                                 <Grid item xs={12}>
-                                    <TextField label="Legend Title" variant="outlined" defaultValue={legendTitle || ''} multiline />
+                                    <FormControl className={classes.formControl}>
+                                        <TextField className={classes.multilineTextField} label="Legend Title" variant="outlined" defaultValue={legendTitle || ''} multiline />
+                                    </FormControl>
                                 </Grid>
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
                                 <Grid item xs={12}>
-                                    <TextField label="File Name" variant="outlined" defaultValue={fileName || ''} InputProps={{ readOnly: true, }} />
+                                    <FormControl className={classes.formControl}>
+                                        <TextField className={classes.textField} label="File Name" variant="outlined" defaultValue={fileName || ''} disabled />
+                                    </FormControl>
                                 </Grid>
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
                                 <Grid item xs={12}>
-                                    <TextField label="Image Status" variant="outlined" defaultValue={imageStatus || ''} />
+                                    <FormControl className={classes.formControl}>
+                                        <TextField className={classes.textField} label="Image Status" variant="outlined" defaultValue={imageStatus || ''} />
+                                    </FormControl>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -91,24 +109,33 @@ export default function Edit() {
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        margin: theme.spacing(2)
     },
     paper: {
         padding: theme.spacing(2),
         margin: 'auto',
-        maxWidth: 800,
+        maxWidth: 800
     },
     image: {
         width: 128,
-        height: 128,
+        height: 128
     },
     img: {
         margin: 'auto',
         display: 'block',
         maxWidth: '100%',
-        maxHeight: '100%',
+        maxHeight: '100%'
     },
     formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
+        margin: theme.spacing(1)
+    },
+    select: {
+        minWidth: 223
+    },
+    multilineTextField: {
+        minWidth: 223
+    },
+    textField: {
+        minWidth: 200
     }
 }));
