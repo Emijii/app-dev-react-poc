@@ -8,7 +8,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 export default function Edit() {
 
     //TODO: Remove hard coded data once we have API data.
-    const name = "Mochi Test";
+    const name = "Mochi";
     const legendTitle = "Mochi is the best! This is a multiline text box.";
     const fileName = "Mochi.png";
     const imageStatus = "Active";
