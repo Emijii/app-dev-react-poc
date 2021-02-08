@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Paper, ButtonBase, TextField } from '@material-ui/core';
+import { Grid, Paper, ButtonBase, TextField, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import ClearIcon from '@material-ui/icons/Clear';
 
 export default function Edit() {
 
+    //TODO: Remove hard coded data once we have API data.
     const name = "Mochi";
     const type = "Australian Kelpie";
-    const application = "Herding";
+    //const application = "Herding";
     const legendTitle = "Mochi is the best! This is a multiline text box.";
     const fileName = "Mochi.png";
     const imageStatus = "Active";
+
+    const [application, setapplication] = useState('2');
+
+    const handleChange = (event) => {
+        setapplication(event.target.value);
+    };
+
 
     const classes = useStyles();
 
@@ -39,7 +47,14 @@ export default function Edit() {
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
                                 <Grid item xs={12}>
-                                    <TextField label="Application" variant="outlined" defaultValue={application || ''} />
+                                    <FormControl variant="outlined" className={classes.formControl}>
+                                        <InputLabel id="application-label">Application</InputLabel>
+                                        <Select id="application-select" labelId="application-label" value={application} onChange={handleChange} label="Application">
+                                            <MenuItem value={1}>Detection</MenuItem>
+                                            <MenuItem value={2}>Herding</MenuItem>
+                                            <MenuItem value={3}>Service</MenuItem>
+                                        </Select>
+                                    </FormControl>
                                 </Grid>
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
@@ -49,7 +64,7 @@ export default function Edit() {
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
                                 <Grid item xs={12}>
-                                    <TextField label="File Name" variant="outlined" defaultValue={fileName || ''} />
+                                    <TextField label="File Name" variant="outlined" defaultValue={fileName || ''} InputProps={{ readOnly: true, }} />
                                 </Grid>
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
@@ -92,4 +107,8 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '100%',
         maxHeight: '100%',
     },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    }
 }));
