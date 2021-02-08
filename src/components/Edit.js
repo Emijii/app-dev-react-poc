@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Paper, ButtonBase, Typography, TextField } from '@material-ui/core';
+import { Grid, Paper, ButtonBase, TextField } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import ClearIcon from '@material-ui/icons/Clear';
 
@@ -10,7 +10,7 @@ export default function Edit() {
     const name = "Mochi";
     const type = "Australian Kelpie";
     const application = "Herding";
-    const legendTitle = "Mochi is the best!";
+    const legendTitle = "Mochi is the best! This is a multiline text box.";
     const fileName = "Mochi.png";
     const imageStatus = "Active";
 
@@ -44,7 +44,7 @@ export default function Edit() {
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
                                 <Grid item xs={12}>
-                                    <TextField label="Legend Title" variant="outlined" defaultValue={legendTitle || ''} />
+                                    <TextField label="Legend Title" variant="outlined" defaultValue={legendTitle || ''} multiline />
                                 </Grid>
                             </Grid>
                             <Grid container item xs={12} spacing={3}>
