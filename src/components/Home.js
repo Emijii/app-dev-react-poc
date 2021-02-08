@@ -1,32 +1,14 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Paper, ButtonBase, Typography, Button } from '@material-ui/core';
+import { Grid, Paper, ButtonBase, Typography } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing(2),
-        margin: 'auto',
-        maxWidth: 800,
-    },
-    image: {
-        width: 128,
-        height: 128,
-    },
-    img: {
-        margin: 'auto',
-        display: 'block',
-        maxWidth: '100%',
-        maxHeight: '100%',
-    },
-}));
-
 export default function Home() {
+
     const classes = useStyles();
+    
     return (
         <div>
             <Paper className={classes.paper}>
@@ -84,15 +66,36 @@ export default function Home() {
                         </Grid>
                     </Grid>
                     <Grid item>
-                        <Button>
+                        <Link to="/edit">
                             <EditIcon />
-                        </Button>
-                        <Button>
+                        </Link>
+                        <Link to="/">
                             <DeleteIcon />
-                        </Button>
+                        </Link>
                     </Grid>
                 </Grid>
             </Paper>
         </div>
     )
 }
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        margin: 'auto',
+        maxWidth: 800,
+    },
+    image: {
+        width: 128,
+        height: 128,
+    },
+    img: {
+        margin: 'auto',
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
+    },
+}));

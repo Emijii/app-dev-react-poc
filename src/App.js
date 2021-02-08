@@ -1,12 +1,44 @@
 import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import { AppBar, Toolbar, Typography, InputBase, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, InputBase } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import PetsIcon from '@material-ui/icons/Pets';
 import Home from './components/Home';
 import Edit from './components/Edit';
 import './App.css';
+
+export default function App() {
+
+  const classes = useStyles();
+
+  return (
+    <div>
+      <AppBar position="static">
+        <Toolbar>
+          <Link to="/" edge="start" className={classes.menuButton} color="inherit">
+            <PetsIcon />
+          </Link>
+          <Typography className={classes.title} variant="h6" noWrap>
+            POC
+          </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase placeholder="Search…" classes={{ root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+        </Toolbar>
+      </AppBar>
+      <br />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/edit" component={Edit} />
+      </Switch>
+    </div>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,37 +94,3 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-function App() {
-
-  const classes = useStyles();
-
-  return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Link to="/edit" edge="start" className={classes.menuButton} color="inherit">
-            <PetsIcon />
-          </Link>
-          <Typography className={classes.title} variant="h6" noWrap>
-            POC
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase placeholder="Search…" classes={{ root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
-      <br />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/edit" component={Edit} />
-      </Switch>
-    </div>
-  );
-}
-
-export default App;
