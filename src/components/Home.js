@@ -33,7 +33,7 @@ export default function Home() {
             <List>
                 {
                     items.map((item) => (
-                        <Item item={item} />
+                        <Item key={item.id} item={item} />
                     ))
                 }
             </List>
