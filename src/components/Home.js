@@ -1,16 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Paper, ButtonBase, Typography } from '@material-ui/core';
+import { Grid, Paper, ButtonBase, Typography, List, ListItem, ListItemText, Card, CardContent, CardActions } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AxiosService from './api/AxiosService';
 
 export default function Home() {
 
+    const [items, setItems] = useState([]);
+
     const classes = useStyles();
-    
+
+    useEffect(() => {
+        retrieveItems();
+    }, []);
+
+    const retrieveItems = () => {
+        AxiosService.get2000()
+            .then(response => {
+                setItems(response.data);
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
     return (
         <div>
+            <List>
+                {
+                    items.map((item) => (
+                        <ListItem key={item.id}>
+                            <ListItemText>
+                                <Card>
+                                    <CardContent>
+                                        {item.name}
+                                    </CardContent>
+                                    <CardActions>
+                                        {item.id}
+                                    </CardActions>
+                                </Card>
+                            </ListItemText>
+                        </ListItem>
+                    ))
+                }
+            </List>
             <Paper className={classes.paper}>
                 <Typography gutterBottom variant="subtitle1">
                     Mochi
