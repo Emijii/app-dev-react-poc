@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Paper, ButtonBase, Typography, List, ListItem, ListItemText, Card, CardContent, CardActions } from '@material-ui/core';
+import { Grid, Paper, ButtonBase, Typography } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AxiosService from './api/AxiosService';
+import Item from './Item';
 
 export default function Home() {
 
@@ -29,24 +30,7 @@ export default function Home() {
 
     return (
         <div>
-            <List>
-                {
-                    items.map((item) => (
-                        <ListItem key={item.id}>
-                            <ListItemText>
-                                <Card>
-                                    <CardContent>
-                                        {item.name}
-                                    </CardContent>
-                                    <CardActions>
-                                        {item.id}
-                                    </CardActions>
-                                </Card>
-                            </ListItemText>
-                        </ListItem>
-                    ))
-                }
-            </List>
+            <Item items={items} />            
             <Paper className={classes.paper}>
                 <Typography gutterBottom variant="subtitle1">
                     Mochi
