@@ -1,10 +1,16 @@
 import Axios from './Axios';
 import AxiosPerformance from "./AxiosPerformance";
 
-const get15 = () =>{
+//Regular API
+const get15 = () => {
     return Axios.get("/products");
 }
 
+const getType = () => {
+    return Axios.get("/type");
+}
+
+//Performance Testing API
 const get2000 = () => {
     return AxiosPerformance.get("/105eeeab");
 };
@@ -39,6 +45,7 @@ const removeAll = () => {
 
 export default {
     get15,
+    getType,
     get2000,
     get5000,
     get10000,
