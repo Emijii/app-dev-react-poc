@@ -12,7 +12,7 @@ export default function Edit() {
     let location = useLocation();
 
     const [type, setType] = useState([]);
-    const [selectedType, setSelectedType] = useState(location.state.type);
+    const [selectedType, setSelectedType] = useState('');
 
     useEffect(() => {
         retrieveType();
@@ -69,7 +69,7 @@ export default function Edit() {
                                 <Select id="type-select" labelId="type-label" className={classes.select} label="Type"
                                     value={selectedType || ''} onChange={handleTypeChange}>
                                     {type.map((item) => (
-                                        <MenuItem key={item.id} value={item.name}>
+                                        <MenuItem key={item.id} value={item.name || ''}>
                                             {item.name}
                                         </MenuItem>
                                     ))}
@@ -79,7 +79,7 @@ export default function Edit() {
                         <Grid item>
                             <FormControl className={classes.formControl} variant="outlined">
                                 <InputLabel id="application-label">Application</InputLabel>
-                                <Select id="application-select" labelId="application-label" className={classes.select} value={application} onChange={handleApplicationChange} label="Application">
+                                <Select id="application-select" labelId="application-label" className={classes.select} value={application || ''} onChange={handleApplicationChange} label="Application">
                                     <MenuItem value={1}>Detection</MenuItem>
                                     <MenuItem value={2}>Herding</MenuItem>
                                     <MenuItem value={3}>Service</MenuItem>
