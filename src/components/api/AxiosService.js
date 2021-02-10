@@ -1,38 +1,44 @@
-import http from "./Axios";
+import Axios from './Axios';
+import AxiosPerformance from "./AxiosPerformance";
+
+const get15 = () =>{
+    return Axios.get("/products");
+}
 
 const get2000 = () => {
-    return http.get("/105eeeab");
+    return AxiosPerformance.get("/105eeeab");
 };
 
 const get5000 = () => {
-    return http.get("/43f59ddd");
+    return AxiosPerformance.get("/43f59ddd");
 };
 
 const get10000 = () => {
-    return http.get("/f8e1698d");
+    return AxiosPerformance.get("/f8e1698d");
 };
 
 const get = id => {
-    return http.get(`/105eeeab/${id}`);
+    return AxiosPerformance.get(`/105eeeab/${id}`);
 };
 
 const create = data => {
-    return http.post("/105eeeab", data);
+    return AxiosPerformance.post("/105eeeab", data);
 };
 
 const update = (id, data) => {
-    return http.put(`/105eeeab/${id}`, data);
+    return AxiosPerformance.put(`/105eeeab/${id}`, data);
 };
 
 const remove = id => {
-    return http.delete(`/105eeeab/${id}`);
+    return AxiosPerformance.delete(`/105eeeab/${id}`);
 };
 
 const removeAll = () => {
-    return http.delete(`/105eeeab`);
+    return AxiosPerformance.delete(`/105eeeab`);
 };
 
 export default {
+    get15,
     get2000,
     get5000,
     get10000,

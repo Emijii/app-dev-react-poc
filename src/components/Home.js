@@ -18,7 +18,7 @@ export default function Home() {
     }, []);
 
     const retrieveItems = () => {
-        AxiosService.get2000()
+        AxiosService.get15()
             .then(response => {
                 setItems(response.data);
                 console.log(response.data);

@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 export default Axios.create({
-  baseURL: "https://my-json-server.typicode.com/MilesSibley/JSON-Server",
+  baseURL: "https://api.mocki.io/v1/",
   headers: {
     "Content-type": "application/json"
   }
