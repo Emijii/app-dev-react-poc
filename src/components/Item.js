@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Collapse, Card, CardContent, CardActions, CardHeader, CardMedia, Avatar, IconButton, Typography } from '@material-ui/core';
+import { Grid, Collapse, Card, CardContent, CardActions, CardHeader, CardMedia, Avatar, IconButton, Typography, Tooltip } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -21,7 +21,14 @@ export default function Item({ item }) {
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Card className={classes.root}>
-                <CardHeader avatar={<Avatar className={item.imageStatus === 'Active' ? classes.avatar : ''}> <FavoriteIcon /></Avatar>} title={item.name} subheader={item.fileName} />
+                <CardHeader title={item.name} subheader={item.fileName}
+                    avatar={
+                        <Avatar className={item.imageStatus === 'Active' ? classes.avatar : ''}>
+                            <Tooltip title={item.imageStatus} placement="top">
+                                <FavoriteIcon />
+                            </Tooltip>
+                        </Avatar>}
+                />
                 <CardMedia className={classes.media} image={item.image} title="Image" />
                 <CardContent className={classes.cardContent}>
                     <Typography variant="body2" color="textSecondary" component="p">
