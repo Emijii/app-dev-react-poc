@@ -12,21 +12,16 @@ export default function Edit() {
     let location = useLocation();
 
     const [type, setType] = useState([]);
-    const [selectedType, setSelectedType] = useState('');
-
-    console.log(location);
+    const [selectedType, setSelectedType] = useState(location.state.type);
 
     useEffect(() => {
         retrieveType();
-        setSelectedType(location.state.type);
-        console.log("Selected Type: " + selectedType);
     }, []);
 
     const retrieveType = () => {
         AxiosService.getType()
             .then(response => {
                 setType(response.data);
-                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
@@ -71,8 +66,8 @@ export default function Edit() {
                         <Grid item>
                             <FormControl className={classes.formControl} variant="outlined">
                                 <InputLabel id="type-label">Type</InputLabel>
-                                <Select id="type-select" labelId="type-label" className={classes.select} label="Type" value={selectedType || ''}
-                                    onChange={handleTypeChange}>
+                                <Select id="type-select" labelId="type-label" className={classes.select} label="Type"
+                                    value={selectedType || ''} onChange={handleTypeChange}>
                                     {type.map((item) => (
                                         <MenuItem key={item.id} value={item.name}>
                                             {item.name}
