@@ -31,7 +31,6 @@ export default function App() {
           </div>
         </Toolbar>
       </AppBar>
-      <br />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/edit" component={Edit} />
