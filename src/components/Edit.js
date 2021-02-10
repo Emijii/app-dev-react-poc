@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, ButtonBase, TextField, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import ClearIcon from '@material-ui/icons/Clear';
 
 export default function Edit() {
+    
+    let location = useLocation();
+    console.log(location);
 
     //TODO: Remove hard coded data once we have API data.
     const name = "Mochi";
