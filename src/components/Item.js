@@ -32,7 +32,7 @@ export default function Item({ item }) {
                 <CardMedia className={classes.media} image={item.image} title="Image" />
                 <CardContent className={classes.cardContent}>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {item.type}
+                        {item.type} / {item.application}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
@@ -49,8 +49,8 @@ export default function Item({ item }) {
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <Typography paragraph>
-                            Test
-                    </Typography>
+                            {item.legendTitle}
+                        </Typography>
                     </CardContent>
                 </Collapse>
             </Card>
