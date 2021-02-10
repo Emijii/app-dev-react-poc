@@ -21,7 +21,7 @@ export default function Item({ item }) {
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Card className={classes.root}>
-                <CardHeader avatar={<Avatar> <FavoriteIcon /></Avatar>} title={item.name} subheader={item.fileName} />
+                <CardHeader avatar={<Avatar className={item.imageStatus === 'Active' ? classes.avatar : ''}> <FavoriteIcon /></Avatar>} title={item.name} subheader={item.fileName} />
                 <CardMedia className={classes.media} image={item.image} title="Image" />
                 <CardContent className={classes.cardContent}>
                     <Typography variant="body2" color="textSecondary" component="p">
@@ -70,4 +70,7 @@ const useStyles = makeStyles(() => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
+    avatar: {
+        backgroundColor: 'green'
+    }
 }));
