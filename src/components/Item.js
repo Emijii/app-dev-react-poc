@@ -36,7 +36,18 @@ export default function Item({ item }) {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton component={Link} to={{ pathname: '/edit', state: { name: item.name } }}>
+                    <IconButton component={Link} to={{
+                        pathname: '/edit', 
+                        state: {
+                             name: item.name,
+                             image: item.image,
+                             type: item.type,
+                             application: item.application,
+                             legendTitle: item.legendTitle,
+                             fileName: item.fileName,
+                             imageStatus: item.imageStatus
+                             }
+                    }}>
                         <EditIcon />
                     </IconButton>
                     <IconButton>
