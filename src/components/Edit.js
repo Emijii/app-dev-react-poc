@@ -16,12 +16,13 @@ export default function Edit() {
 
     useEffect(() => {
         retrieveType();
-    }, []);
+    });
 
     const retrieveType = () => {
         AxiosService.getType()
             .then(response => {
                 setType(response.data);
+                setSelectedType(location.state.type);
             })
             .catch(e => {
                 console.log(e);
