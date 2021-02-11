@@ -12,17 +12,19 @@ export default function Edit() {
     let location = useLocation();
 
     const [name, setName] = useState('');
+    const [legendTitle, setLegendTitle] = useState('');
+    const [imageStatus, setImageStatus] = useState('');
     const [type, setType] = useState([]);
     const [selectedType, setSelectedType] = useState('');
     const [application, setApplication] = useState([]);
     const [selectedApplication, setSelectedApplication] = useState('');
-    const [imageStatus, setImageStatus] = useState('');
 
     useEffect(() => {
         setName(location.state.name);
+        setLegendTitle(location.state.legendTitle);
+        setImageStatus(location.state.imageStatus);
         retrieveType();
         retrieveApplication();
-        setImageStatus(location.state.imageStatus);
     }, []);
 
     const retrieveType = () => {
@@ -51,16 +53,20 @@ export default function Edit() {
         setName(event.target.value);
     };
 
+    const handleLegendTitleChange = (event) => {
+        setLegendTitle(event.target.value);
+    };
+
+    const handleImageStatusChange = (event) => {
+        setImageStatus(event.target.value);
+    };
+
     const handleTypeChange = (event) => {
         setSelectedType(event.target.value);
     };
 
     const handleApplicationChange = (event) => {
         setSelectedApplication(event.target.value);
-    };
-
-    const handleImageStatusChange = (event) => {
-        setImageStatus(event.target.value);
     };
 
     const classes = useStyles();
@@ -86,7 +92,7 @@ export default function Edit() {
                         <Grid item>
                             <FormControl className={classes.formControl}>
                                 <TextField className={classes.textField} label="Name" variant="outlined"
-                                    value={name || ''} onChange={handleNameChange} error={name === '' ? true : false} helperText={name === '' ? 'Name is required' : ''} />
+                                    value={name || ''} onChange={handleNameChange} error={name === '' ? true : false} helperText={name === '' ? 'Required' : ''} />
                             </FormControl>
                         </Grid>
                         <Grid item>
@@ -118,7 +124,9 @@ export default function Edit() {
                         <Grid item>
                             <FormControl className={classes.formControl}>
                                 <TextField className={classes.multilineTextField} label="Legend Title" variant="outlined"
-                                    defaultValue={location.state.legendTitle || ''} multiline />
+                                    defaultValue={legendTitle || ''} multiline error={legendTitle === '' ? true : false}
+                                    helperText={legendTitle === '' ? 'Required' : ''}
+                                    onChange={handleLegendTitleChange} />
                             </FormControl>
                         </Grid>
                         <Grid item>
