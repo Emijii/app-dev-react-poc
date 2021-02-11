@@ -10,6 +10,10 @@ const getType = () => {
     return Axios.get("/type");
 }
 
+const getApplication = () => {
+    return Axios.get("/application");
+}
+
 //Performance Testing API
 const get2000 = () => {
     return AxiosPerformance.get("/105eeeab");
@@ -46,6 +50,7 @@ const removeAll = () => {
 export default {
     get15,
     getType,
+    getApplication,
     get2000,
     get5000,
     get10000,
