@@ -12,7 +12,7 @@ export default function Edit() {
     let location = useLocation();
 
     const [type, setType] = useState([]);
-    const [selectedType, setSelectedType] = useState('');
+    const [selectedType, setSelectedType] = useState('');  //TOOD: I want to pass location.state.type here, but keep getting warning.
 
     useEffect(() => {
         retrieveType();
