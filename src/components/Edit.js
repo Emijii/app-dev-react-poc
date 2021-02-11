@@ -12,7 +12,7 @@ export default function Edit() {
     let location = useLocation();
 
     const [type, setType] = useState([]);
-    const [selectedType, setSelectedType] = useState(location.state.type);
+    const [selectedType, setSelectedType] = useState('');
 
     useEffect(() => {
         retrieveType();
