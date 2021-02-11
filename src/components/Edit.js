@@ -11,6 +11,7 @@ export default function Edit() {
 
     let location = useLocation();
 
+    const [name, setName] = useState('');
     const [type, setType] = useState([]);
     const [selectedType, setSelectedType] = useState('');
     const [application, setApplication] = useState([]);
@@ -18,6 +19,7 @@ export default function Edit() {
     const [imageStatus, setImageStatus] = useState('');
 
     useEffect(() => {
+        setName(location.state.name);
         retrieveType();
         retrieveApplication();
         setImageStatus(location.state.imageStatus);
@@ -45,6 +47,10 @@ export default function Edit() {
             });
     };
 
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    };
+
     const handleTypeChange = (event) => {
         setSelectedType(event.target.value);
     };
@@ -62,7 +68,7 @@ export default function Edit() {
     return (
         <div>
             <Card className={classes.root}>
-                <CardHeader title={location.state.name} subheader={location.state.fileName}
+                <CardHeader title={name} subheader={location.state.fileName}
                     avatar={
                         <Avatar className={imageStatus === 'Active' ? classes.avatar : ''}>
                             <Tooltip title={imageStatus} placement="top">
@@ -79,7 +85,8 @@ export default function Edit() {
                         </Grid>
                         <Grid item>
                             <FormControl className={classes.formControl}>
-                                <TextField className={classes.textField} label="Name" variant="outlined" defaultValue={location.state.name || ''} />
+                                <TextField className={classes.textField} label="Name" variant="outlined" defaultValue={name || ''}
+                                    onChange={handleNameChange} />
                             </FormControl>
                         </Grid>
                         <Grid item>
