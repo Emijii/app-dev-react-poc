@@ -12,9 +12,9 @@ export default function Edit() {
     let location = useLocation();
 
     const [type, setType] = useState([]);
-    const [selectedType, setSelectedType] = useState(location.state.type);  //Going to live with this warning for now. Could probably be solved by using Redux or another option for state management.
+    const [selectedType, setSelectedType] = useState('');
     const [application, setApplication] = useState([]);
-    const [selectedApplication, setSelectedApplication] = useState(location.state.application);
+    const [selectedApplication, setSelectedApplication] = useState('');
     
     useEffect(() => {
         retrieveType();
@@ -25,6 +25,7 @@ export default function Edit() {
         AxiosService.getType()
             .then(response => {
                 setType(response.data);
+                setSelectedType(location.state.type);
             })
             .catch(e => {
                 console.log(e);
@@ -35,6 +36,7 @@ export default function Edit() {
         AxiosService.getApplication()
             .then(response => {
                 setApplication(response.data);
+                setSelectedApplication(location.state.application);
             })
             .catch(e => {
                 console.log(e);
