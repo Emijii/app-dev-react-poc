@@ -86,7 +86,7 @@ export default function Edit() {
                         <Grid item>
                             <FormControl className={classes.formControl}>
                                 <TextField className={classes.textField} label="Name" variant="outlined"
-                                    value={name || ''} onChange={handleNameChange} />
+                                    value={name || ''} onChange={handleNameChange} error={name === '' ? true : false} helperText={name === '' ? 'Name is required' : ''} />
                             </FormControl>
                         </Grid>
                         <Grid item>
@@ -117,7 +117,8 @@ export default function Edit() {
                         </Grid>
                         <Grid item>
                             <FormControl className={classes.formControl}>
-                                <TextField className={classes.multilineTextField} label="Legend Title" variant="outlined" defaultValue={location.state.legendTitle || ''} multiline />
+                                <TextField className={classes.multilineTextField} label="Legend Title" variant="outlined"
+                                    defaultValue={location.state.legendTitle || ''} multiline />
                             </FormControl>
                         </Grid>
                         <Grid item>
