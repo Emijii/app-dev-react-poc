@@ -85,8 +85,8 @@ export default function Edit() {
                         </Grid>
                         <Grid item>
                             <FormControl className={classes.formControl}>
-                                <TextField className={classes.textField} label="Name" variant="outlined" defaultValue={name || ''}
-                                    onChange={handleNameChange} />
+                                <TextField className={classes.textField} label="Name" variant="outlined"
+                                    value={name || ''} onChange={handleNameChange} />
                             </FormControl>
                         </Grid>
                         <Grid item>
