@@ -16,7 +16,7 @@ export default function Edit() {
 
     useEffect(() => {
         retrieveType();
-    });
+    }, []);
 
     const retrieveType = () => {
         AxiosService.getType()
