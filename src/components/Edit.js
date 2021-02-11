@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, ButtonBase, TextField, Select, MenuItem, IconButton, InputLabel, FormControl, Card, CardHeader, Avatar, CardContent, Tooltip, CardMedia, CardActions } from '@material-ui/core';
+import { RadioGroup, FormControlLabel, Radio, FormLabel, Grid, ButtonBase, TextField, Select, MenuItem, IconButton, InputLabel, FormControl, Card, CardHeader, Avatar, CardContent, Tooltip, CardActions } from '@material-ui/core';
 import AxiosService from './api/AxiosService';
 import SaveIcon from '@material-ui/icons/Save';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -15,10 +15,12 @@ export default function Edit() {
     const [selectedType, setSelectedType] = useState('');
     const [application, setApplication] = useState([]);
     const [selectedApplication, setSelectedApplication] = useState('');
-    
+    const [imageStatus, setImageStatus] = useState('');
+
     useEffect(() => {
         retrieveType();
         retrieveApplication();
+        setImageStatus(location.state.imageStatus);
     }, []);
 
     const retrieveType = () => {
@@ -51,22 +53,30 @@ export default function Edit() {
         setSelectedApplication(event.target.value);
     };
 
+    const handleImageStatusChange = (event) => {
+        setImageStatus(event.target.value);
+    };
+
     const classes = useStyles();
 
     return (
         <div>
-            <Card className={classes.card}>
+            <Card className={classes.root}>
                 <CardHeader title={location.state.name} subheader={location.state.fileName}
                     avatar={
-                        <Avatar className={location.state.imageStatus === 'Active' ? classes.avatar : ''}>
-                            <Tooltip title={location.state.imageStatus} placement="top">
+                        <Avatar className={imageStatus === 'Active' ? classes.avatar : ''}>
+                            <Tooltip title={imageStatus} placement="top">
                                 <FavoriteIcon />
                             </Tooltip>
                         </Avatar>}
                 />
-                <CardMedia className={classes.media} image={location.state.image} title="Image" />
                 <CardContent className={classes.cardContent}>
                     <Grid container>
+                        <Grid item>
+                            <ButtonBase className={classes.image}>
+                                <img className={classes.img} alt="complex" src={location.state.image} />
+                            </ButtonBase>
+                        </Grid>
                         <Grid item>
                             <FormControl className={classes.formControl}>
                                 <TextField className={classes.textField} label="Name" variant="outlined" defaultValue={location.state.name || ''} />
@@ -104,14 +114,13 @@ export default function Edit() {
                             </FormControl>
                         </Grid>
                         <Grid item>
-                            <FormControl className={classes.formControl}>
-                                <TextField className={classes.textField} label="Image Status" variant="outlined" defaultValue={location.state.imageStatus || ''} />
+                            <FormControl className={classes.formControl} component="fieldset">
+                                <FormLabel component="legend">Image Status</FormLabel>
+                                <RadioGroup name="imageStatus" value={imageStatus} onChange={handleImageStatusChange}>
+                                    <FormControlLabel value="Active" control={<Radio />} label="Active" />
+                                    <FormControlLabel value="Inactive" control={<Radio />} label="Inactive" />
+                                </RadioGroup>
                             </FormControl>
-                        </Grid>                        
-                        <Grid item>
-                            <ButtonBase className={classes.image}>
-                                <img className={classes.img} alt="complex" src={location.state.image} />
-                            </ButtonBase>
                         </Grid>
                     </Grid>
                 </CardContent>
@@ -134,8 +143,8 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(2)
     },
     image: {
-        width: 128,
-        height: 128
+        width: 228,
+        height: 228
     },
     img: {
         margin: 'auto',
@@ -147,17 +156,13 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1)
     },
     select: {
-        minWidth: 323
+        minWidth: 223
     },
     multilineTextField: {
-        minWidth: 323
+        minWidth: 223
     },
     textField: {
-        minWidth: 300
-    },
-    card: {
-        maxWidth: 600,
-        margin: 'auto'
+        minWidth: 100
     },
     media: {
         height: 0,
