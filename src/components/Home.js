@@ -18,7 +18,6 @@ export default function Home() {
         AxiosService.get15()
             .then(response => {
                 setItems(response.data);
-                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);

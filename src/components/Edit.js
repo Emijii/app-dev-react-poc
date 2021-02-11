@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, ButtonBase, TextField, Select, MenuItem, IconButton, InputLabel, FormControl, Card, CardHeader, Avatar, CardContent, Typography, Tooltip, CardMedia, CardActions } from '@material-ui/core';
+import { Grid, ButtonBase, TextField, Select, MenuItem, IconButton, InputLabel, FormControl, Card, CardHeader, Avatar, CardContent, Tooltip, CardMedia, CardActions } from '@material-ui/core';
 import AxiosService from './api/AxiosService';
 import SaveIcon from '@material-ui/icons/Save';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -13,9 +13,12 @@ export default function Edit() {
 
     const [type, setType] = useState([]);
     const [selectedType, setSelectedType] = useState(location.state.type);  //Going to live with this warning for now. Could probably be solved by using Redux or another option for state management.
-
+    const [application, setApplication] = useState([]);
+    const [selectedApplication, setSelectedApplication] = useState(location.state.application);
+    
     useEffect(() => {
         retrieveType();
+        retrieveApplication();
     }, []);
 
     const retrieveType = () => {
@@ -28,14 +31,22 @@ export default function Edit() {
             });
     };
 
-    const [application, setapplication] = useState('3');
+    const retrieveApplication = () => {
+        AxiosService.getApplication()
+            .then(response => {
+                setApplication(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
 
-    const handleTypeChange = (event) => {        
-        setSelectedType(event.target.value);        
+    const handleTypeChange = (event) => {
+        setSelectedType(event.target.value);
     };
 
     const handleApplicationChange = (event) => {
-        setapplication(event.target.value);
+        setSelectedApplication(event.target.value);
     };
 
     const classes = useStyles();
@@ -53,9 +64,6 @@ export default function Edit() {
                 />
                 <CardMedia className={classes.media} image={location.state.image} title="Image" />
                 <CardContent className={classes.cardContent}>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {location.state.type} / {location.state.application}
-                    </Typography>
                     <Grid container>
                         <Grid item>
                             <FormControl className={classes.formControl}>
@@ -78,10 +86,13 @@ export default function Edit() {
                         <Grid item>
                             <FormControl className={classes.formControl} variant="outlined">
                                 <InputLabel id="application-label">Application</InputLabel>
-                                <Select id="application-select" labelId="application-label" className={classes.select} value={application || ''} onChange={handleApplicationChange} label="Application">
-                                    <MenuItem value={1}>Detection</MenuItem>
-                                    <MenuItem value={2}>Herding</MenuItem>
-                                    <MenuItem value={3}>Service</MenuItem>
+                                <Select id="application-select" labelId="application-label" className={classes.select} label="Application"
+                                    value={selectedApplication || ''} defaultValue={location.state.application || ''} onChange={handleApplicationChange}>
+                                    {application.map((item) => (
+                                        <MenuItem key={item.id} value={item.name || ''}>
+                                            {item.name}
+                                        </MenuItem>
+                                    ))}
                                 </Select>
                             </FormControl>
                         </Grid>
@@ -92,14 +103,9 @@ export default function Edit() {
                         </Grid>
                         <Grid item>
                             <FormControl className={classes.formControl}>
-                                <TextField className={classes.textField} label="File Name" variant="outlined" defaultValue={location.state.fileName || ''} disabled />
-                            </FormControl>
-                        </Grid>
-                        <Grid item>
-                            <FormControl className={classes.formControl}>
                                 <TextField className={classes.textField} label="Image Status" variant="outlined" defaultValue={location.state.imageStatus || ''} />
                             </FormControl>
-                        </Grid>
+                        </Grid>                        
                         <Grid item>
                             <ButtonBase className={classes.image}>
                                 <img className={classes.img} alt="complex" src={location.state.image} />
@@ -139,16 +145,16 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1)
     },
     select: {
-        minWidth: 223
+        minWidth: 323
     },
     multilineTextField: {
-        minWidth: 223
+        minWidth: 323
     },
     textField: {
-        minWidth: 200
+        minWidth: 300
     },
     card: {
-        maxWidth: 400,
+        maxWidth: 600,
         margin: 'auto'
     },
     media: {
