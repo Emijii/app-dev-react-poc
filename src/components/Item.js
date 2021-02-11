@@ -8,7 +8,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-export default function Item({ item }) {
+export default function Item({ item, onDelete }) {
 
     const [expanded, setExpanded] = React.useState(false);
 
@@ -37,20 +37,20 @@ export default function Item({ item }) {
                 </CardContent>
                 <CardActions disableSpacing>
                     <IconButton component={Link} to={{
-                        pathname: '/edit', 
+                        pathname: '/edit',
                         state: {
-                             name: item.name,
-                             image: item.image,
-                             type: item.type,
-                             application: item.application,
-                             legendTitle: item.legendTitle,
-                             fileName: item.fileName,
-                             imageStatus: item.imageStatus
-                             }
+                            name: item.name,
+                            image: item.image,
+                            type: item.type,
+                            application: item.application,
+                            legendTitle: item.legendTitle,
+                            fileName: item.fileName,
+                            imageStatus: item.imageStatus
+                        }
                     }}>
                         <EditIcon />
                     </IconButton>
-                    <IconButton>
+                    <IconButton onClick={() => onDelete(item.id)}>
                         <DeleteIcon />
                     </IconButton>
                     <IconButton className={clsx(classes.expand, { [classes.expandOpen]: expanded, })} onClick={handleExpandClick}>

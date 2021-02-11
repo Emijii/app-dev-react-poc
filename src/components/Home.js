@@ -24,11 +24,16 @@ export default function Home() {
             });
     };
 
+    const handleDelete = (id) => {
+        const newList = items.filter((item) => item.id !== id);
+        setItems(newList);
+    }
+
     return (
         <Grid container className={classes.gridContainer} spacing={2}>
             {
                 items.map((item) => (
-                    <Item key={item.id} item={item} />
+                    <Item key={item.id} item={item} onDelete={handleDelete} />
                 ))
             }
         </Grid>
