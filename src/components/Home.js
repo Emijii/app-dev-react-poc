@@ -3,10 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import AxiosService from './api/AxiosService';
 import Item from './Item';
+import ConfirmationDialog from './ConfirmationDialog';
 
 export default function Home() {
 
     const [items, setItems] = useState([]);
+    const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
+    const [canDelete, setCanDelete] = useState(false);
 
     const classes = useStyles();
 
@@ -25,18 +28,32 @@ export default function Home() {
     };
 
     const handleDelete = (id) => {
-        const newList = items.filter((item) => item.id !== id);
-        setItems(newList);
+        console.log("handleDelete");
+        console.log("canDelete: " + canDelete);
+
+        //Confirm before deleting
+        setOpenConfirmationDialog(true);
+
+        if (canDelete) {
+            const newList = items.filter((item) => item.id !== id);
+            setItems(newList);
+        }
     }
 
     return (
-        <Grid container className={classes.gridContainer} spacing={2}>
-            {
-                items.map((item) => (
-                    <Item key={item.id} item={item} onDelete={handleDelete} />
-                ))
-            }
-        </Grid>
+        <>
+            <Grid container className={classes.gridContainer} spacing={2}>
+                {
+                    items.map((item) => (
+                        <Item key={item.id} item={item} onDelete={handleDelete} />
+                    ))
+                }
+            </Grid>
+            <ConfirmationDialog isOpen={openConfirmationDialog}
+                confirm={() => { setCanDelete(true); setOpenConfirmationDialog(false); }}
+                cancel={() => { setCanDelete(false); setOpenConfirmationDialog(false); }}
+            />
+        </>
     )
 }
 
