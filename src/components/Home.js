@@ -3,13 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import AxiosService from './api/AxiosService';
 import Item from './Item';
-import ConfirmationDialog from './ConfirmationDialog';
 
 export default function Home() {
 
     const [items, setItems] = useState([]);
-    const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
-    const [canDelete, setCanDelete] = useState(false);
 
     const classes = useStyles();
 
@@ -28,17 +25,9 @@ export default function Home() {
     };
 
     const handleDelete = (id) => {
-        console.log("handleDelete");
-        console.log("canDelete: " + canDelete);
-
-        //Confirm before deleting
-        setOpenConfirmationDialog(true);
-
-        if (canDelete) {
-            const newList = items.filter((item) => item.id !== id);
-            setItems(newList);
-        }
-    }
+        const newList = items.filter((item) => item.id !== id);
+        setItems(newList);
+    };
 
     return (
         <>
@@ -49,13 +38,9 @@ export default function Home() {
                     ))
                 }
             </Grid>
-            <ConfirmationDialog isOpen={openConfirmationDialog}
-                confirm={() => { setCanDelete(true); setOpenConfirmationDialog(false); }}
-                cancel={() => { setCanDelete(false); setOpenConfirmationDialog(false); }}
-            />
         </>
     )
-}
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {

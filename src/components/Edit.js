@@ -141,17 +141,21 @@ export default function Edit() {
                     </Grid>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton component={Link} to="/">
-                        <SaveIcon />
-                    </IconButton>
-                    <IconButton component={Link} to="/">
-                        <ClearIcon />
-                    </IconButton>
+                    <Tooltip title="Save" placement="top">
+                        <IconButton component={Link} to="/">
+                            <SaveIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Cancel" placement="top">
+                        <IconButton component={Link} to="/">
+                            <ClearIcon />
+                        </IconButton>
+                    </Tooltip>
                 </CardActions>
             </Card>
         </div>
     )
-}
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {
