@@ -6,6 +6,7 @@ import AxiosService from './api/AxiosService';
 import SaveIcon from '@material-ui/icons/Save';
 import ClearIcon from '@material-ui/icons/Clear';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 export default function Edit() {
 
@@ -88,6 +89,16 @@ export default function Edit() {
                             <ButtonBase className={classes.image}>
                                 <img className={classes.img} alt="complex" src={location.state.image} />
                             </ButtonBase>
+                        </Grid>
+                        <Grid item>
+                            <input id="uploadImageFile" className={classes.input} accept="image/*" type="file" />
+                            <label htmlFor="uploadImageFile">
+                                <Tooltip title="Upload Image" placement="top">
+                                    <IconButton component="span">
+                                        <PhotoCamera />
+                                    </IconButton>
+                                </Tooltip>
+                            </label>
                         </Grid>
                         <Grid item>
                             <FormControl className={classes.formControl}>
@@ -190,5 +201,8 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         backgroundColor: 'green'
+    },
+    input: {
+        display: 'none'
     }
 }));
