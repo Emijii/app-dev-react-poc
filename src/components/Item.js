@@ -51,27 +51,23 @@ export default function Item({ item, onDelete }) {
                 </CardContent>
                 <CardActions disableSpacing>
                     <Box display={actionButtonDisplay}>
-                        <Tooltip title="Edit" placement="left">
-                            <IconButton component={Link} to={{
-                                pathname: '/edit',
-                                state: {
-                                    name: item.name,
-                                    image: item.image,
-                                    type: item.type,
-                                    application: item.application,
-                                    legendTitle: item.legendTitle,
-                                    fileName: item.fileName,
-                                    imageStatus: item.imageStatus
-                                }
-                            }}>
-                                <EditIcon />
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Delete" placement="right">
-                            <IconButton onClick={handleShowConfirmDelete}>
-                                <DeleteIcon />
-                            </IconButton>
-                        </Tooltip>
+                        <IconButton component={Link} to={{
+                            pathname: '/edit',
+                            state: {
+                                name: item.name,
+                                image: item.image,
+                                type: item.type,
+                                application: item.application,
+                                legendTitle: item.legendTitle,
+                                fileName: item.fileName,
+                                imageStatus: item.imageStatus
+                            }
+                        }}>
+                            <EditIcon />
+                        </IconButton>
+                        <IconButton onClick={handleShowConfirmDelete}>
+                            <DeleteIcon />
+                        </IconButton>
                     </Box>
                     <Box visibility={confirmButtonDisplay}>
                         <Tooltip title="Confirm Delete" placement="left">
