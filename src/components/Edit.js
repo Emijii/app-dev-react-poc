@@ -13,6 +13,7 @@ export default function Edit() {
     let location = useLocation();
 
     const [name, setName] = useState('');
+    const [fileName, setFileName] = useState('');
     const [legendTitle, setLegendTitle] = useState('');
     const [imageStatus, setImageStatus] = useState('');
     const [type, setType] = useState([]);
@@ -22,6 +23,7 @@ export default function Edit() {
 
     useEffect(() => {
         setName(location.state.name);
+        setFileName(location.state.fileName);
         setLegendTitle(location.state.legendTitle);
         setImageStatus(location.state.imageStatus);
         retrieveType();
@@ -70,12 +72,16 @@ export default function Edit() {
         setSelectedApplication(event.target.value);
     };
 
+    const handleUploadImage = (event) => {
+        setFileName(event.target.files[0].name);
+    };
+
     const classes = useStyles();
 
     return (
         <div>
             <Card className={classes.root}>
-                <CardHeader title={name} subheader={location.state.fileName}
+                <CardHeader title={name} subheader={fileName}
                     avatar={
                         <Avatar className={imageStatus === 'Active' ? classes.avatar : ''}>
                             <Tooltip title={imageStatus} placement="top">
@@ -91,7 +97,7 @@ export default function Edit() {
                             </ButtonBase>
                         </Grid>
                         <Grid item>
-                            <input id="uploadImageFile" className={classes.input} accept="image/*" type="file" />
+                            <input id="uploadImageFile" className={classes.input} accept="image/*" type="file" onChange={handleUploadImage} />
                             <label htmlFor="uploadImageFile">
                                 <Tooltip title="Upload Image" placement="top">
                                     <IconButton component="span">
