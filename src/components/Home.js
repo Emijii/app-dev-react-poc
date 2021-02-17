@@ -6,7 +6,7 @@ import Item from './Item';
 
 export default function Home() {
 
-    const { items, deleteItem } = useContext(ItemContext);
+    const { items, deleteItem, filterName } = useContext(ItemContext);
 
     const classes = useStyles();
 
@@ -14,7 +14,7 @@ export default function Home() {
         <>
             <Grid container className={classes.gridContainer} spacing={2}>
                 {
-                    items.map((item) => (
+                    items.filter(item => item.name.includes(filterName)).map((item) => (
                         <Item key={item.id} item={item} onDelete={deleteItem} />
                     ))
                 }

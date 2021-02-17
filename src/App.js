@@ -13,6 +13,7 @@ import './App.css';
 export default function App() {
 
   const [items, setItems] = useState([]);
+  const [filterName, setFilterName] = useState('');
 
   const classes = useStyles();
 
@@ -35,14 +36,15 @@ export default function App() {
     setItems(newList);
   };
 
-  const handleSearch = (event) => {      
-      const newList = items.filter(item => item.name.includes(event.target.value));
-      setItems(newList);
+  const handleSearch = (event) => {
+    if (event.key === 'Enter') {
+      setFilterName(event.target.value);
+    }
   }
 
   return (
     <div>
-      <ItemContext.Provider value={{ items, deleteItem }}>
+      <ItemContext.Provider value={{ items, deleteItem, filterName }}>
         <AppBar position="static">
           <Toolbar>
             <Link to="/" edge="start" className={classes.menuButton} color="inherit">

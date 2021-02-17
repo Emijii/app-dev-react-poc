@@ -2,7 +2,8 @@ import { createContext } from 'react';
 
 const ItemContext = createContext({
     items: [],
-    deleteItem: () => { }
+    deleteItem: () => { },
+    filterName: ''
 });
 
 export default ItemContext;
