@@ -6,7 +6,7 @@ import Item from './Item';
 
 export default function Home() {
 
-    const { items, deleteItem, filterName } = useContext(ItemContext);
+    const { items, deleteItem, filterName, filterType, filterApplication } = useContext(ItemContext);
 
     const classes = useStyles();
 
@@ -14,9 +14,12 @@ export default function Home() {
         <>
             <Grid container className={classes.gridContainer} spacing={2}>
                 {
-                    items.filter(item => item.name.toLowerCase().includes(filterName)).map((item) => (
-                        <Item key={item.id} item={item} onDelete={deleteItem} />
-                    ))
+                    items.filter(item =>
+                        item.name.toLowerCase().includes(filterName)
+                        || item.type.toLowerCase().includes(filterType)
+                        || item.application.toLowerCase().includes(filterApplication)).map((item) => (
+                            <Item key={item.id} item={item} onDelete={deleteItem} />
+                        ))
                 }
             </Grid>
         </>

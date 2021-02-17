@@ -14,6 +14,8 @@ export default function App() {
 
   const [items, setItems] = useState([]);
   const [filterName, setFilterName] = useState('');
+  const [filterType, setFilterType] = useState('');
+  const [filterApplication, setFilterApplication] = useState('');
 
   const classes = useStyles();
 
@@ -39,12 +41,14 @@ export default function App() {
   const handleSearch = (event) => {
     if (event.key === 'Enter') {
       setFilterName(event.target.value);
+      setFilterType(event.target.value);
+      setFilterApplication(event.target.value);
     }
   }
 
   return (
     <div>
-      <ItemContext.Provider value={{ items, deleteItem, filterName }}>
+      <ItemContext.Provider value={{ items, deleteItem, filterName, filterType, filterApplication }}>
         <AppBar position="static">
           <Toolbar>
             <Link to="/" edge="start" className={classes.menuButton} color="inherit">
