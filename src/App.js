@@ -51,7 +51,7 @@ export default function App() {
       <ItemContext.Provider value={{ items, deleteItem, filterName, filterType, filterApplication }}>
         <AppBar position="static">
           <Toolbar>
-            <Link to="/" edge="start" className={classes.menuButton} color="inherit">
+            <Link to="/" edge="start" className={classes.menuButton}>
               <PetsIcon />
             </Link>
             <Typography className={classes.title} variant="h6" noWrap>
@@ -81,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: 'white'
   },
   title: {
     flexGrow: 1,
