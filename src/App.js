@@ -1,40 +1,65 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, InputBase } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import PetsIcon from '@material-ui/icons/Pets';
+import AxiosService from './components/api/AxiosService';
+import ItemContext from './components/context/ItemContext';
 import Home from './components/Home';
 import Edit from './components/Edit';
 import './App.css';
 
 export default function App() {
 
+  const [items, setItems] = useState([]);
+
   const classes = useStyles();
+
+  useEffect(() => {
+    retrieveItems();
+  }, []);
+
+  const retrieveItems = () => {
+    AxiosService.get15()
+      .then(response => {
+        setItems(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  const deleteItem = (id) => {
+    const newList = items.filter((item) => item.id !== id);
+    setItems(newList);
+  };
 
   return (
     <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Link to="/" edge="start" className={classes.menuButton} color="inherit">
-            <PetsIcon />
-          </Link>
-          <Typography className={classes.title} variant="h6" noWrap>
-            POC
+      <ItemContext.Provider value={{ items, deleteItem }}>
+        <AppBar position="static">
+          <Toolbar>
+            <Link to="/" edge="start" className={classes.menuButton} color="inherit">
+              <PetsIcon />
+            </Link>
+            <Typography className={classes.title} variant="h6" noWrap>
+              POC
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase placeholder="Search…" classes={{ root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }}
+              />
             </div>
-            <InputBase placeholder="Search…" classes={{ root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/edit" component={Edit} />
-      </Switch>
+          </Toolbar>
+        </AppBar>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/edit" component={Edit} />
+        </Switch>
+      </ItemContext.Provider>
     </div>
   );
 }

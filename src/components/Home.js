@@ -1,40 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import AxiosService from './api/AxiosService';
+import ItemContext from './context/ItemContext';
 import Item from './Item';
 
 export default function Home() {
 
-    const [items, setItems] = useState([]);
+    const { items, deleteItem } = useContext(ItemContext);
 
     const classes = useStyles();
-
-    useEffect(() => {
-        retrieveItems();
-    }, []);
-
-    const retrieveItems = () => {
-        AxiosService.get15()
-            .then(response => {
-                setItems(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
-
-    const handleDelete = (id) => {
-        const newList = items.filter((item) => item.id !== id);
-        setItems(newList);
-    };
 
     return (
         <>
             <Grid container className={classes.gridContainer} spacing={2}>
                 {
                     items.map((item) => (
-                        <Item key={item.id} item={item} onDelete={handleDelete} />
+                        <Item key={item.id} item={item} onDelete={deleteItem} />
                     ))
                 }
             </Grid>
