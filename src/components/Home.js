@@ -14,7 +14,7 @@ export default function Home() {
         <>
             <Grid container className={classes.gridContainer} spacing={2}>
                 {
-                    items.filter(item => item.name.includes(filterName)).map((item) => (
+                    items.filter(item => item.name.toLowerCase().includes(filterName)).map((item) => (
                         <Item key={item.id} item={item} onDelete={deleteItem} />
                     ))
                 }
