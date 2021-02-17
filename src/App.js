@@ -35,6 +35,11 @@ export default function App() {
     setItems(newList);
   };
 
+  const handleSearch = (event) => {      
+      const newList = items.filter(item => item.name.includes(event.target.value));
+      setItems(newList);
+  }
+
   return (
     <div>
       <ItemContext.Provider value={{ items, deleteItem }}>
@@ -50,8 +55,8 @@ export default function App() {
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
-              <InputBase placeholder="Search…" classes={{ root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }}
-              />
+              <InputBase placeholder="Search…" classes={{ root: classes.inputRoot, input: classes.inputInput, }}
+                onKeyDown={handleSearch} />
             </div>
           </Toolbar>
         </AppBar>
