@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import { AppBar, Toolbar, Typography, InputBase, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, InputBase, IconButton, Tooltip } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import PetsIcon from '@material-ui/icons/Pets';
@@ -8,7 +8,6 @@ import AddIcon from '@material-ui/icons/Add';
 import AxiosService from './components/api/AxiosService';
 import ItemContext from './components/context/ItemContext';
 import Home from './components/Home';
-import Edit from './components/Edit';
 import Upsert from './components/Upsert';
 import './App.css';
 
@@ -53,26 +52,30 @@ export default function App() {
       <ItemContext.Provider value={{ items, deleteItem, filterName, filterType, filterApplication }}>
         <AppBar position="static">
           <Toolbar>
-            <Link to="/" edge="start" className={classes.menuButton}>
-              <PetsIcon />
-            </Link>
+            <Tooltip title="Home" placement="bottom">
+              <IconButton component={Link} to="/" edge="start" className={classes.menuButton}>
+                <PetsIcon />
+              </IconButton>
+            </Tooltip>
             <Typography className={classes.title} variant="h6" noWrap>
               POC
             </Typography>
-            <IconButton component={Link} to={{
-              pathname: '/upsert',
-              state: {
-                name: '',
-                image: 'https://via.placeholder.com/150',
-                type: 'Cairn',
-                application: 'Hunting',
-                legendTitle: '',
-                fileName: '',
-                imageStatus: 'Active'
-              }
-            }} className={classes.menuButton}>
-              <AddIcon />
-            </IconButton>
+            <Tooltip title="New" placement="bottom">
+              <IconButton component={Link} to={{
+                pathname: '/upsert',
+                state: {
+                  name: '',
+                  image: 'https://via.placeholder.com/150',
+                  type: 'Cairn',
+                  application: 'Hunting',
+                  legendTitle: '',
+                  fileName: '',
+                  imageStatus: 'Active'
+                }
+              }} className={classes.menuButton}>
+                <AddIcon />
+              </IconButton>
+            </Tooltip>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -84,7 +87,6 @@ export default function App() {
         </AppBar>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/edit" component={Edit} />
           <Route path="/upsert" component={Upsert} />
         </Switch>
       </ItemContext.Provider>

@@ -76,6 +76,7 @@ export default function Upsert() {
 
     const handleUploadImage = (event) => {
         setFileName(event.target.files[0].name);
+        setImage(URL.createObjectURL(event.target.files[0]));
     };
 
     const classes = useStyles();
