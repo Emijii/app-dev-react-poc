@@ -43,7 +43,7 @@ export default function Item({ item, onDelete }) {
                             </Tooltip>
                         </Avatar>}
                 />
-                <CardMedia className={classes.media} image={item.image} title="Image" />
+                <CardMedia className={classes.media} image={item.image} title={item.name} />
                 <CardContent className={classes.cardContent}>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {item.type} / {item.application}
