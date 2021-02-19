@@ -67,10 +67,10 @@ export default function App() {
                 type: 'Cairn',
                 application: 'Hunting',
                 legendTitle: '',
-                fileName: 'NewFile.jpg',
+                fileName: '',
                 imageStatus: 'Active'
               }
-            }}>
+            }} className={classes.menuButton}>
               <AddIcon />
             </IconButton>
             <div className={classes.search}>
