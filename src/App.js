@@ -63,7 +63,7 @@ export default function App() {
               pathname: '/upsert',
               state: {
                 name: '',
-                image: '',
+                image: 'https://via.placeholder.com/150',
                 type: 'Cairn',
                 application: 'Hunting',
                 legendTitle: '',

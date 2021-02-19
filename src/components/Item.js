@@ -52,7 +52,7 @@ export default function Item({ item, onDelete }) {
                 <CardActions disableSpacing>
                     <Box display={actionButtonDisplay}>
                         <IconButton component={Link} to={{
-                            pathname: '/edit',
+                            pathname: '/upsert',
                             state: {
                                 name: item.name,
                                 image: item.image,
