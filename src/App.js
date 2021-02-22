@@ -7,6 +7,7 @@ import PetsIcon from '@material-ui/icons/Pets';
 import AddIcon from '@material-ui/icons/Add';
 import AxiosService from './components/api/AxiosService';
 import ItemContext from './components/context/ItemContext';
+import Dashboard from './components/Dashboard';
 import Home from './components/Home';
 import Upsert from './components/Upsert';
 import VirtualizedList from './components/VirtualizedList';
@@ -88,6 +89,7 @@ export default function App() {
         </AppBar>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/upsert" component={Upsert} />
           <Route path="/virtualizedlist" component={VirtualizedList} />
         </Switch>
