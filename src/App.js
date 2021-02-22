@@ -9,6 +9,7 @@ import AxiosService from './components/api/AxiosService';
 import ItemContext from './components/context/ItemContext';
 import Home from './components/Home';
 import Upsert from './components/Upsert';
+import VirtualizedList from './components/VirtualizedList';
 import './App.css';
 
 export default function App() {
@@ -88,6 +89,7 @@ export default function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/upsert" component={Upsert} />
+          <Route path="/virtualizedlist" component={VirtualizedList} />
         </Switch>
       </ItemContext.Provider>
     </div>
