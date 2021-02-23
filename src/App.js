@@ -27,7 +27,7 @@ export default function App() {
   }, []);
 
   const retrieveItems = () => {
-    AxiosService.get15()
+    AxiosService.get10000()
       .then(response => {
         setPuppies(response.data);
       })
