@@ -3,19 +3,19 @@ import { Switch, Route, Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, InputBase, IconButton, Tooltip } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
-import PetsIcon from '@material-ui/icons/Pets';
+import HomeIcon from '@material-ui/icons/Home';
 import AddIcon from '@material-ui/icons/Add';
 import AxiosService from './components/api/AxiosService';
 import ItemContext from './components/context/ItemContext';
 import Dashboard from './components/Dashboard';
-import Home from './components/Home';
+import Puppies from './components/Puppies';
 import Upsert from './components/Upsert';
 import VirtualizedList from './components/VirtualizedList';
 import './App.css';
 
 export default function App() {
 
-  const [items, setItems] = useState([]);
+  const [puppies, setPuppies] = useState([]);
   const [filterName, setFilterName] = useState('');
   const [filterType, setFilterType] = useState('');
   const [filterApplication, setFilterApplication] = useState('');
@@ -29,7 +29,7 @@ export default function App() {
   const retrieveItems = () => {
     AxiosService.get15()
       .then(response => {
-        setItems(response.data);
+        setPuppies(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -37,8 +37,8 @@ export default function App() {
   };
 
   const deleteItem = (id) => {
-    const newList = items.filter((item) => item.id !== id);
-    setItems(newList);
+    const newList = puppies.filter((item) => item.id !== id);
+    setPuppies(newList);
   };
 
   const handleSearch = (event) => {
@@ -51,18 +51,18 @@ export default function App() {
 
   return (
     <div>
-      <ItemContext.Provider value={{ items, deleteItem, filterName, filterType, filterApplication }}>
+      <ItemContext.Provider value={{ items: puppies, deleteItem, filterName, filterType, filterApplication }}>
         <AppBar position="static">
           <Toolbar>
             <Tooltip title="Home" placement="bottom">
               <IconButton component={Link} to="/" edge="start" className={classes.menuButton}>
-                <PetsIcon />
+                <HomeIcon />
               </IconButton>
             </Tooltip>
             <Typography className={classes.title} variant="h6" noWrap>
               POC
             </Typography>
-            <Tooltip title="New" placement="bottom">
+            <Tooltip title="New Puppy" placement="bottom">
               <IconButton component={Link} to={{
                 pathname: '/upsert',
                 state: {
@@ -88,8 +88,8 @@ export default function App() {
           </Toolbar>
         </AppBar>
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/" exact component={Dashboard} />
+          <Route path="/puppies" exact component={Puppies} />
           <Route path="/upsert" component={Upsert} />
           <Route path="/virtualizedlist" component={VirtualizedList} />
         </Switch>

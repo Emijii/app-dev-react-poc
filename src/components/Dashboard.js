@@ -23,7 +23,7 @@ export default function Dashboard() {
                     <CardMedia className={classes.media} image="https://images.dog.ceo/breeds/kelpie/n02105412_6431.jpg" title="Puppies" />
                     <CardActions disableSpacing>
                         <Box>
-                            <IconButton component={Link} to="/">
+                            <IconButton component={Link} to="/puppies">
                                 <PlayArrowIcon />
                             </IconButton>
                         </Box>
@@ -41,7 +41,7 @@ export default function Dashboard() {
                     <CardMedia className={classes.media} image="https://cdn.iconscout.com/icon/premium/png-256-thumb/database-851-501706.png" title="Random Data" />
                     <CardActions disableSpacing>
                         <Box>
-                            <IconButton component={Link} to="/">
+                            <IconButton component={Link} to="/virtualizedlist">
                                 <PlayArrowIcon />
                             </IconButton>
                         </Box>

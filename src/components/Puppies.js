@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 import ItemContext from './context/ItemContext';
 import Item from './Item';
 
-export default function Home() {
+export default function Puppies() {
 
     const { items, deleteItem, filterName, filterType, filterApplication } = useContext(ItemContext);
 

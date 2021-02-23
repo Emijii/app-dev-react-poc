@@ -162,12 +162,12 @@ export default function Upsert() {
                 </CardContent>
                 <CardActions disableSpacing>
                     <Tooltip title="Save" placement="top">
-                        <IconButton component={Link} to="/">
+                        <IconButton component={Link} to="/puppies">
                             <SaveIcon />
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Cancel" placement="top">
-                        <IconButton component={Link} to="/">
+                        <IconButton component={Link} to="/puppies">
                             <ClearIcon />
                         </IconButton>
                     </Tooltip>
