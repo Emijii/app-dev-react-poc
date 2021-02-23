@@ -6,14 +6,17 @@ import AxiosService from './api/AxiosService';
 import SaveIcon from '@material-ui/icons/Save';
 import ClearIcon from '@material-ui/icons/Clear';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
-export default function Edit() {
+export default function Upsert() {
 
     let location = useLocation();
 
     const [name, setName] = useState('');
+    const [fileName, setFileName] = useState('');
     const [legendTitle, setLegendTitle] = useState('');
     const [imageStatus, setImageStatus] = useState('');
+    const [image, setImage] = useState('');
     const [type, setType] = useState([]);
     const [selectedType, setSelectedType] = useState('');
     const [application, setApplication] = useState([]);
@@ -21,6 +24,8 @@ export default function Edit() {
 
     useEffect(() => {
         setName(location.state.name);
+        setFileName(location.state.fileName);
+        setImage(location.state.image);
         setLegendTitle(location.state.legendTitle);
         setImageStatus(location.state.imageStatus);
         retrieveType();
@@ -69,12 +74,17 @@ export default function Edit() {
         setSelectedApplication(event.target.value);
     };
 
+    const handleUploadImage = (event) => {
+        setFileName(event.target.files[0].name);
+        setImage(URL.createObjectURL(event.target.files[0]));
+    };
+
     const classes = useStyles();
 
     return (
         <div>
             <Card className={classes.root}>
-                <CardHeader title={name} subheader={location.state.fileName}
+                <CardHeader title={name} subheader={fileName}
                     avatar={
                         <Avatar className={imageStatus === 'Active' ? classes.avatar : ''}>
                             <Tooltip title={imageStatus} placement="top">
@@ -86,8 +96,18 @@ export default function Edit() {
                     <Grid container>
                         <Grid item>
                             <ButtonBase className={classes.image}>
-                                <img className={classes.img} alt="complex" src={location.state.image} />
+                                <img className={classes.img} alt="complex" src={image} />
                             </ButtonBase>
+                        </Grid>
+                        <Grid item>
+                            <input id="uploadImageFile" className={classes.input} accept="image/*" type="file" onChange={handleUploadImage} />
+                            <label htmlFor="uploadImageFile">
+                                <Tooltip title="Upload Image" placement="top">
+                                    <IconButton component="span">
+                                        <PhotoCamera />
+                                    </IconButton>
+                                </Tooltip>
+                            </label>
                         </Grid>
                         <Grid item>
                             <FormControl className={classes.formControl}>
@@ -141,17 +161,21 @@ export default function Edit() {
                     </Grid>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton component={Link} to="/">
-                        <SaveIcon />
-                    </IconButton>
-                    <IconButton component={Link} to="/">
-                        <ClearIcon />
-                    </IconButton>
+                    <Tooltip title="Save" placement="top">
+                        <IconButton component={Link} to="/puppies">
+                            <SaveIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Cancel" placement="top">
+                        <IconButton component={Link} to="/puppies">
+                            <ClearIcon />
+                        </IconButton>
+                    </Tooltip>
                 </CardActions>
             </Card>
         </div>
     )
-}
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -186,5 +210,8 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         backgroundColor: 'green'
+    },
+    input: {
+        display: 'none'
     }
 }));
