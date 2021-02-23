@@ -28,7 +28,7 @@ function ItemRenderer({ data, index, style }) {
     );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         margin: 0,
         width: '100%',
