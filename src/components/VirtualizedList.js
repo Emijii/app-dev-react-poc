@@ -30,9 +30,8 @@ function ItemRenderer({ data, index, style }) {
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        margin: 0,
         width: '100%',
-        height: 400,
-        maxWidth: 300,
-        backgroundColor: theme.palette.background.paper,
-    },
+        padding: '20px'
+    }
 }));

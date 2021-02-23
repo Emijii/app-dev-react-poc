@@ -38,7 +38,7 @@ export default function Dashboard() {
                                 <StorageIcon />
                             </Avatar>}
                     />
-                    <CardMedia className={classes.media} image="https://cdn.iconscout.com/icon/premium/png-256-thumb/database-851-501706.png" title="Random Data" />
+                    <CardMedia className={classes.media} image="https://tistatech.com/wp-content/uploads/2017/01/database-icon.png" title="Random Data" />
                     <CardActions disableSpacing>
                         <Box>
                             <IconButton component={Link} to="/virtualizedlist">
@@ -59,7 +59,9 @@ const useStyles = makeStyles(() => ({
     },
     media: {
         height: 0,
-        paddingTop: '56.25%', // 16:9
+        paddingTop: '56.25%', // 16:9,
+        width: '45%',
+        marginLeft: '28%'
     },
     cardContent: {
         paddingBottom: 0
