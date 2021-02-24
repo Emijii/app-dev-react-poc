@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { FixedSizeList } from 'react-window';
 import { FixedSizeGrid } from 'react-window';
+import { AutoSizer } from 'react-virtualized';
 import ItemContext from './context/ItemContext';
 import Item from './Item';
 
@@ -12,13 +12,20 @@ export default function VirtualizedList() {
 
     return (
         <div className={classes.root}>
-            <FixedSizeGrid itemData={items} columnCount={3} columnWidth={300} rowCount={Math.max(items.length / 3)} rowHeight={400}
-                height={500} width={800}>
-                {Cell}
-            </FixedSizeGrid>
-            {/* <FixedSizeList itemData={items} itemSize={46} itemCount={items.length} height={400} width={300}>
-                {ItemRenderer}
-            </FixedSizeList> */}
+            <AutoSizer>
+                {({ height, width }) => (
+                    <FixedSizeGrid
+                        itemData={items}
+                        columnCount={3}
+                        columnWidth={300}
+                        rowCount={Math.max(items.length / 3)}
+                        rowHeight={400}
+                        height={height}
+                        width={width}>
+                        {Cell}
+                    </FixedSizeGrid>
+                )}
+            </AutoSizer>
         </div>
     );
 };
@@ -30,27 +37,17 @@ function Cell({ columnIndex, rowIndex, style, data }) {
     console.log("item: " + item.name);
 
     return (
-        <div style={style}>            
+        <div style={style}>
             <Item key={item.id} item={item} />
         </div>
     );
 };
 
-function ItemRenderer({ data, index, style }) {
-    //Access the items array using the "data" prop.
-    const item = data[index];
-
-    return (
-        <div style={style}>
-            {item.name}
-        </div>
-    );
-}
-
 const useStyles = makeStyles(() => ({
     root: {
         margin: 0,
-        width: '100%',
+        width: '97%',
+        height: '500px',
         padding: '20px'
     }
 }));
