@@ -14,10 +14,10 @@ export default function VirtualizedList() {
         <div className={classes.root}>
             <AutoSizer>
                 {({ height, width }) => (
-                    <FixedSizeGrid
+                    <FixedSizeGrid className={classes.gridContainer}
                         itemData={items}
                         columnCount={3}
-                        columnWidth={300}
+                        columnWidth={500}
                         rowCount={Math.max(items.length / 3)}
                         rowHeight={400}
                         height={height}
@@ -35,6 +35,7 @@ function Cell({ columnIndex, rowIndex, style, data }) {
     const item = data[rowIndex * 3 + columnIndex];
 
     console.log("item: " + item.name);
+    console.log("style: " + style);
 
     return (
         <div style={style}>
@@ -46,8 +47,11 @@ function Cell({ columnIndex, rowIndex, style, data }) {
 const useStyles = makeStyles(() => ({
     root: {
         margin: 0,
-        width: '97%',
-        height: '500px',
-        padding: '20px'
+        width: '100%',
+        height: '500px'
+    },
+    gridContainer: {
+        margin: 0,
+        width: '100%'
     }
 }));
