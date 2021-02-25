@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { FixedSizeGrid } from 'react-window';
 import { AutoSizer } from 'react-virtualized';
 import ItemContext from './context/ItemContext';
-import Item from './Item';
+import VirtualizedItem from './VirtualizedItem';
 
 export default function VirtualizedList() {
 
@@ -14,7 +14,7 @@ export default function VirtualizedList() {
         <div className={classes.root}>
             <AutoSizer>
                 {({ height, width }) => (
-                    <FixedSizeGrid className={classes.gridContainer}
+                    <FixedSizeGrid
                         itemData={items}
                         columnCount={3}
                         columnWidth={500}
@@ -39,7 +39,7 @@ function Cell({ columnIndex, rowIndex, style, data }) {
 
     return (
         <div style={style}>
-            <Item key={item.id} item={item} />
+            <VirtualizedItem key={item.id} item={item} />
         </div>
     );
 };
@@ -49,9 +49,5 @@ const useStyles = makeStyles(() => ({
         margin: 0,
         width: '100%',
         height: '500px'
-    },
-    gridContainer: {
-        margin: 0,
-        width: '100%'
     }
 }));
