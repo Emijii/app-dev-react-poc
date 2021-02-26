@@ -11,7 +11,7 @@ export default function VirtualizedList() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={classes.container}>
             <AutoSizer>
                 {({ height, width }) => (
                     <FixedSizeGrid
@@ -49,5 +49,13 @@ const useStyles = makeStyles(() => ({
         margin: 0,
         width: '100%',
         height: '500px'
+    },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        alignContent: 'space-between',
+        width: '100%',
+        height: '630px'
     }
 }));
