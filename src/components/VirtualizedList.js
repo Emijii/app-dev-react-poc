@@ -17,7 +17,7 @@ export default function VirtualizedList() {
                     <FixedSizeGrid
                         itemData={items}
                         columnCount={3}
-                        columnWidth={500}
+                        columnWidth={400}
                         rowCount={Math.max(items.length / 3)}
                         rowHeight={400}
                         height={height}
