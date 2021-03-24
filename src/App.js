@@ -62,7 +62,7 @@ export default function App() {
             <Typography className={classes.title} variant="h6" noWrap>
               POC
             </Typography>
-            <Tooltip title="New Puppy" placement="bottom">
+            <Tooltip title="New" placement="bottom">
               <IconButton component={Link} to={{
                 pathname: '/upsert',
                 state: {

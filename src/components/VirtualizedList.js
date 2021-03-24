@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { FixedSizeList } from 'react-window';
+import { FixedSizeGrid } from 'react-window';
+import { AutoSizer } from 'react-virtualized';
 import ItemContext from './context/ItemContext';
+import VirtualizedItem from './VirtualizedItem';
 
 export default function VirtualizedList() {
 
@@ -9,29 +11,51 @@ export default function VirtualizedList() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-            <FixedSizeList itemData={items} itemSize={46} itemCount={items.length} height={400} width={300}>
-                {ItemRenderer}
-            </FixedSizeList>
+        <div className={classes.container}>
+            <AutoSizer>
+                {({ height, width }) => (
+                    <FixedSizeGrid
+                        itemData={items}
+                        columnCount={3}
+                        columnWidth={400}
+                        rowCount={Math.max(items.length / 3)}
+                        rowHeight={400}
+                        height={height}
+                        width={width}>
+                        {Cell}
+                    </FixedSizeGrid>
+                )}
+            </AutoSizer>
         </div>
     );
 };
 
-function ItemRenderer({ data, index, style }) {
-    //Access the items array using the "data" prop.
-    const item = data[index];
+function Cell({ columnIndex, rowIndex, style, data }) {
+
+    const item = data[rowIndex * 3 + columnIndex];
+
+    console.log("item: " + item.name);
+    console.log("style: " + style);
 
     return (
         <div style={style}>
-            {item.name}
+            <VirtualizedItem key={item.id} item={item} />
         </div>
     );
-}
+};
 
 const useStyles = makeStyles(() => ({
     root: {
         margin: 0,
         width: '100%',
-        padding: '20px'
+        height: '500px'
+    },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        alignContent: 'space-between',
+        width: '100%',
+        height: '630px'
     }
 }));
