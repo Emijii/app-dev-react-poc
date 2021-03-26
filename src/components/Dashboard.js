@@ -48,6 +48,24 @@ export default function Dashboard() {
                     </CardActions>
                 </Card>
             </Grid >
+            <Grid item xs={12} sm={6} md={4}>
+                <Card className={classes.root}>
+                    <CardHeader title="Mass Update" subheader="Mass update data."
+                        avatar={
+                            <Avatar>
+                                <StorageIcon />
+                            </Avatar>}
+                    />
+                    <CardMedia className={classes.media} image="images/MassUpdate.jpg" title="Mass Update" />
+                    <CardActions disableSpacing>
+                        <Box>
+                            <IconButton component={Link} to="/puppies">
+                                <PlayArrowIcon />
+                            </IconButton>
+                        </Box>
+                    </CardActions>
+                </Card>
+            </Grid >
         </Grid >
     )
 };
