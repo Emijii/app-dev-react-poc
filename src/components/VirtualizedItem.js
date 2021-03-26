@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Collapse, Card, CardContent, CardActions, CardHeader, CardMedia, Avatar, IconButton, Typography, Tooltip, Box } from '@material-ui/core';
+import { Collapse, Card, CardContent, CardActions, CardHeader, CardMedia, Avatar, IconButton, Typography, Tooltip, Box } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
