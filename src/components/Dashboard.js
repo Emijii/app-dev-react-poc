@@ -59,7 +59,7 @@ export default function Dashboard() {
                     <CardMedia className={classes.media} image="images/MassUpdate.jpg" title="Mass Update" />
                     <CardActions disableSpacing>
                         <Box>
-                            <IconButton component={Link} to="/puppies">
+                            <IconButton component={Link} to="/MassUpload">
                                 <PlayArrowIcon />
                             </IconButton>
                         </Box>

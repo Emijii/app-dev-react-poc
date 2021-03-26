@@ -12,6 +12,7 @@ import Puppies from './components/Puppies';
 import Upsert from './components/Upsert';
 import VirtualizedList from './components/VirtualizedList';
 import './App.css';
+import MassUpload from './components/MassUpload';
 
 export default function App() {
 
@@ -92,6 +93,7 @@ export default function App() {
           <Route path="/puppies" exact component={Puppies} />
           <Route path="/upsert" component={Upsert} />
           <Route path="/virtualizedlist" component={VirtualizedList} />
+          <Route path="/massupload" component={MassUpload} />  
         </Switch>
       </ItemContext.Provider>
     </div>
